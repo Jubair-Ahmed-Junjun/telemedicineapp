@@ -1,4 +1,4 @@
-  <div class="wrapper">
+<div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -13,9 +13,5 @@
         <a href="#" class="nav-link">Contact</a>
       </li>
     </ul>
-
     <!-- SEARCH FORM -->
-
-
-
-  </nav>
+</nav>
