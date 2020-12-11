@@ -1,9 +1,7 @@
 @extends('admin.master')
-
 @section('title')
     My Files || Dashboard
 @endsection
-
 @section('main-content')
   	 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -13,7 +11,7 @@
           <div class="col-sm-6">
             <h1>File Uploads</h1>
           </div>
-            @if(Auth::user()->roles == 'admin' || Auth::user()->roles == 'doctor')
+            @if(Auth::user()->roles == 'admin' || Auth::user()->roles == 'patient')
           <div class="col-sm-6">
             <!-- <form action="" method="post">
               {{ csrf_field() }} -->
@@ -47,14 +45,14 @@
                 <th>Download</th>
                 <th>Delete</th>
               </tr>
-
             </thead>
             <tbody>
               @foreach($myfiles as $myfile)
               <tr>
                 <td>{{ $myfile->file_name }}</td>
                 <td>{{ $myfile->email }}</td>
-                <td>download</td>
+                <td><a href="{{ route('download',['id'=>$myfile->id]) }}">Download</a></td>
+
                 <td>
                   <form id="delete-form-{{$myfile->id}}" action="{{route('my-file.destroy',$myfile->id)}}" method="post" style="display:none;">
                                                 @csrf
@@ -90,7 +88,6 @@
                       </select>
                       </div>
                     </div>
-
               </div>
               <div class="col-sm-6">
                   <!-- <form action="" method="post">
@@ -113,9 +110,8 @@
           </section>
         </div>
         <!-- /.card-body -->
-
         <!-- /.card-footer-->
-      </div>
+</div>
       <!-- /.card -->
 
       <!-- Modal -->
@@ -142,5 +138,5 @@
 </div>
 </section>
     <!-- /.content -->
-  </div>
+</div>
 @endsection

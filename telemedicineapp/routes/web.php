@@ -22,6 +22,8 @@ Route::resource('my-file', 'MyFileController');
 Route::resource('chat', 'ChatController');
 Route::resource('video-call', 'VideoCallController');
 Route::resource('my-account', 'MyAccountController');
+Route::get('/download/{id}', 'MyFileController@pdfgenerate')->name('download');
+
 
 
 

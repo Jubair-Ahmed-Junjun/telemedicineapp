@@ -1,7 +1,6 @@
 <?php
-
 namespace App\Http\Controllers;
-
+use PDF;
 use App\MyFile;
 use Illuminate\Http\Request;
 
@@ -40,6 +39,7 @@ class MyFileController extends Controller
             $myfile = new MyFile;
             $myfile->file_name = $request->file_name;
             $myfile->email = $request->email;
+            $myfile->name = $request->name;
             $myfile->save();
             return redirect(route('my-file.index'));
     }
@@ -89,4 +89,11 @@ class MyFileController extends Controller
         myfile::where('id',$id)->delete();
         return redirect()->back();
     }
+    public function pdfgenerate($id)
+    {
+        $myfile = MyFile::find($id);
+        $pdf = PDF::loadView('download',compact('myfile'));
+        return $pdf->stream('my_file.pdf');
+    }
+
 }
