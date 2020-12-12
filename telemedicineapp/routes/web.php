@@ -14,7 +14,6 @@ Route::get('/', function () {
     return view('Auth.login');
 });
 
-
 Route::resource('appointment', 'AppointmentController');
 Route::resource('doctors', 'DoctorController');
 Route::resource('my-file', 'MyFileController');
