@@ -1,0 +1,7 @@
+{
+    "require": {
+        "hwi/oauth-bundle": "^1.2",
+        "php-http/guzzle6-adapter": "^2.0",
+        "php-http/httplug-bundle": "^1.19"
+    }
+}

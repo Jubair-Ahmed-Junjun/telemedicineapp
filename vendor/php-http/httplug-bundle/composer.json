@@ -1,0 +1,103 @@
+{
+    "name": "php-http/httplug-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony integration for HTTPlug",
+    "keywords": [
+        "http",
+        "discovery",
+        "adapter",
+        "message",
+        "factory",
+        "bundle",
+        "httplug",
+        "php-http"
+    ],
+    "homepage": "http://httplug.io",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Buchmann",
+            "email": "mail@davidbu.ch"
+        },
+        {
+            "name": "Tobias Nyholm",
+            "email": "tobias.nyholm@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "php-http/client-common": "^1.9 || ^2.0",
+        "php-http/client-implementation": "^1.0",
+        "php-http/discovery": "^1.0",
+        "php-http/httplug": "^1.0 || ^2.0",
+        "php-http/logger-plugin": "^1.1",
+        "php-http/message": "^1.4",
+        "php-http/message-factory": "^1.0.2",
+        "php-http/stopwatch-plugin": "^1.2",
+        "psr/http-message": "^1.0",
+        "symfony/config": "^3.4.34 || ^4.2.12 || ^5.0",
+        "symfony/dependency-injection": "^3.4.34 || ^4.2.12 || ^5.0",
+        "symfony/event-dispatcher": "^3.4.34 || ^4.2.12 || ^5.0",
+        "symfony/http-kernel": "^3.4.34 || ^4.2.12 || ^5.0",
+        "symfony/options-resolver": "^3.4.34 || ^4.2.12 || ^5.0"
+    },
+    "conflict": {
+        "php-http/guzzle6-adapter": "<1.1",
+        "php-http/curl-client": "<2.0"
+    },
+    "require-dev": {
+        "matthiasnoback/symfony-dependency-injection-test": "^4.0",
+        "nyholm/nsa": "^1.1",
+        "nyholm/psr7": "^1.2.1",
+        "php-http/cache-plugin": "^1.7",
+        "php-http/guzzle6-adapter": "^1.1.1 || ^2.0.1",
+        "php-http/mock-client": "^1.2",
+        "php-http/promise": "^1.0",
+        "polishsymfonycommunity/symfony-mocker-container": "^1.0",
+        "symfony/browser-kit": "^3.4.34 || ^4.2.12 || ^5.0",
+        "symfony/cache": "^3.4.35 || ~4.2.12 || ^4.3.8 || ^5.0",
+        "symfony/dom-crawler": "^3.4.34 || ^4.2.12 || ^5.0",
+        "symfony/framework-bundle": "^3.4.34 || ^4.2.12 || ^5.0",
+        "symfony/http-foundation": "^3.4.35 || ~4.2.12 || ^4.3.8 || ^5.0",
+        "symfony/phpunit-bridge": "^3.4.34 || ^4.2.12 || ^5.0",
+        "symfony/stopwatch": "^3.4.34 || ^4.2.12 || ^5.0",
+        "symfony/twig-bundle": "^3.4.34 || ^4.2.12 || ^5.0",
+        "symfony/web-profiler-bundle": "^3.4.34 || ^4.2.12 || ^5.0",
+        "twig/twig": "^1.41 || ^2.10 || ^3.0"
+    },
+    "suggest": {
+        "php-http/cache-plugin": "To configure clients that cache responses",
+        "php-http/mock-client": "Add this to your require-dev section to mock HTTP responses easily",
+        "twig/twig": "Add this to your require-dev section when using the WebProfilerBundle"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Http\\HttplugBundle\\": "src/"
+        },
+        "exclude-from-classmap": [
+            "/Tests/Resources/MyPsr18TestClient.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Http\\HttplugBundle\\Tests\\": "tests/"
+        },
+        "classmap": [
+            "tests/Resources/app/AppKernel.php"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "test": "vendor/bin/simple-phpunit",
+        "test-ci": "vendor/bin/simple-phpunit --coverage-text --coverage-clover=build/coverage.xml"
+    }
+}
