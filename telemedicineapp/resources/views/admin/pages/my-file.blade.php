@@ -51,7 +51,7 @@
               <tr>
                 <td>{{ $myfile->file_name }}</td>
                 <td>{{ $myfile->email }}</td>
-                <td><a href="{{ route('download',['id'=>$myfile->id]) }}">Download</a></td>
+                <td><a href="{{ route('download',['id'=>$myfile->id]) }}"><i class="fas fa-cloud-download-alt"></i></a></td>
 
                 <td>
                   <form id="delete-form-{{$myfile->id}}" action="{{route('my-file.destroy',$myfile->id)}}" method="post" style="display:none;">
