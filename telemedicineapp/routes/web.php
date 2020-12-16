@@ -26,17 +26,6 @@ Route::get('/download/{id}', 'MyFileController@pdfgenerate')->name('download');
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 // Route::get('/myfile', function () {
 //     return view('admin.pages.myfile');
 // })->name('myfile');

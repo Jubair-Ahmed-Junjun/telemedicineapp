@@ -50,7 +50,6 @@
                   <form id="delete-form-{{$appointment->id}}" action="{{route('appointment.destroy',$appointment->id)}}" method="post" style="display:none;">
                                                 @csrf
                                                 {{method_field('DELETE')}}
-
                                             </form>
                                             <a href="" onclick="if(confirm('Are you sure, You want to delete this?'))
                                             {
@@ -60,7 +59,7 @@
                                                 event.preventDefault();
                                                     }" class="btn btn-danger">
                   <i class="fa fa-times"></i></a></td>
-                <td><a href="" class="btn btn-success"><i class="fa fa-comments"></i></a></td>
+                <td><a href="{{route('chatify')}}" class="btn btn-success"><i class="fa fa-comments"></i></a></td>
                 <td><a href="" class="btn btn-danger"><i class="fa fa-video"></i></a></td>
               </tr>
               @endforeach

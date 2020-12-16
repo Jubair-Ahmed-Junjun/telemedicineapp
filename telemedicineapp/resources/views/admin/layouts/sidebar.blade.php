@@ -53,7 +53,7 @@
             </a>
           </li>
            <li class="nav-item">
-               <a href="{{ route('chat.index') }}" class="nav-link">
+               <a href="{{ route('chatify') }}" class="nav-link">
               <i class="nav-icon fas fa-comments"></i>
               <p>
                 Chat

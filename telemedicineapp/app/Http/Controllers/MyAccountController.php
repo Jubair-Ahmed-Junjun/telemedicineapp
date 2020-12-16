@@ -15,7 +15,8 @@ class MyAccountController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.my-account');
+        $users = User::all();
+        return view('admin.pages.my-account',compact('users'));
     }
 
     /**
@@ -68,9 +69,9 @@ class MyAccountController extends Controller
      * @param  \App\MyAccount  $myAccount
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MyAccount $myAccount)
+    public function update(Request $request, $id)
     {
-        $users = User::all();
+
         $user = User::find($id);
 
         $user->name = $request->name;
@@ -81,7 +82,7 @@ class MyAccountController extends Controller
         $user->address = $request->address;
         $user->save();
 
-        return redirect(route('my-account.index',compact('users')));
+        return redirect(route('my-account.index'));
     }
 
     /**
