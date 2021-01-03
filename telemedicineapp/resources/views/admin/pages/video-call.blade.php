@@ -39,7 +39,8 @@
           </div>
         </div>
         <div class="card-body">
-          Start creating your amazing application!
+        <video id="vidDisplay" autoplay="true">
+
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -48,8 +49,21 @@
         <!-- /.card-footer-->
       </div>
       <!-- /.card -->
-
     </section>
     <!-- /.content -->
   </div>
+  <script type="text/javascript">
+    var video = document.querySelector("#vidDisplay");
+
+    if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (err0r) {
+      console.log("Something went wrong!");
+    });
+}
+  </script>
+
 @endsection

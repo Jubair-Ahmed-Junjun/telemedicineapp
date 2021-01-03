@@ -14,7 +14,7 @@ class VideoCallController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.pages.video-call');
     }
 
     /**
