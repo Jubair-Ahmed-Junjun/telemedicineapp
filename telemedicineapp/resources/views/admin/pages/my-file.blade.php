@@ -1,7 +1,9 @@
 @extends('admin.master')
+
 @section('title')
     My Files || Dashboard
 @endsection
+
 @section('main-content')
   	 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -45,14 +47,15 @@
                 <th>Download</th>
                 <th>Delete</th>
               </tr>
+
             </thead>
             <tbody>
               @foreach($myfiles as $myfile)
               <tr>
-                <td>{{ $myfile->file_name }}</td>
+                <!-- <td>{{ $myfile->image }}</td>   -->
+                <td><img src="{{ asset($myfile->image) }}" alt="" width="50px" height="40px"></td>
                 <td>{{ $myfile->email }}</td>
-                <td><a href="{{ route('download',['id'=>$myfile->id]) }}"><i class="fas fa-cloud-download-alt"></i></a></td>
-
+                <td><a href="{{ route('download',['id'=>$myfile->id]) }}" class="btn btn-primary"><i class="fa fa-download"></i></a></td>
                 <td>
                   <form id="delete-form-{{$myfile->id}}" action="{{route('my-file.destroy',$myfile->id)}}" method="post" style="display:none;">
                                                 @csrf
@@ -83,11 +86,12 @@
                         <select class="form-control">
                            <option value="">Select</option>
                            @foreach($myfiles as $myfile)
-                           <option value="{{$myfile->email}},{{$myfile->file_name}}">{{$myfile->email}},{{$myfile->file_name}}</option>
+                           <option value="{{$myfile->email}}, {{$myfile->file_name}}">{{$myfile->email}},{{$myfile->file_name}}</option>
                            @endforeach
                       </select>
                       </div>
                     </div>
+
               </div>
               <div class="col-sm-6">
                   <!-- <form action="" method="post">
@@ -110,15 +114,17 @@
           </section>
         </div>
         <!-- /.card-body -->
+
         <!-- /.card-footer-->
-</div>
+      </div>
       <!-- /.card -->
+
       <!-- Modal -->
 <div class="modal fade" id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
           {{ csrf_field() }}
         <div class="form-group">
           <input type="text" class="form-control" name="name" placeholder="Name" value="{{Auth::user()->name}}" readonly>
@@ -127,7 +133,7 @@
           <input type="email" class="form-control" name="email" placeholder="Email" value="{{Auth::user()->email}}" readonly>
         </div>
         <div class="form-group">
-          <input type="file" class="form-control-file" name="file_name">
+          <input type="file" class="form-control-file" name="image">
         </div>
         <button type="submit" class="btn btn-primary float-sm-right">Save</button>
       </form>
@@ -135,7 +141,8 @@
     </div>
   </div>
 </div>
-</section>
+
+    </section>
     <!-- /.content -->
-</div>
+  </div>
 @endsection

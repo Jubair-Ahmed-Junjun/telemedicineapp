@@ -1,8 +1,10 @@
 <?php
 namespace App\Http\Controllers;
-use PDF;
 use App\MyFile;
+use PDF;
+use Image;
 use Illuminate\Http\Request;
+use DB;
 
 class MyFileController extends Controller
 {
@@ -14,8 +16,7 @@ class MyFileController extends Controller
     public function index()
     {
         $myfiles = MyFile::all();
-
-        return view('admin.pages.my-file',compact('myfiles'));
+     return view('admin.pages.my-file', compact('myfiles'));
     }
 
     /**
@@ -34,14 +35,35 @@ class MyFileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    protected function imageUpload($request){
+
+        $fileImage = $request->file('image');
+        $fileType   = $fileImage->getClientOriginalExtension();
+        $imageName  =   time().'.'.$fileType;
+        $directory  =   'file-images/';
+        $imageUrl   =   $directory.$imageName;
+        Image::make($fileImage)->save($imageUrl);
+
+        return $imageUrl;
+    }
+
+    protected function saveFileInfo($request, $imageUrl){
+
+        $myfile = new MyFile;
+
+        $myfile->image = $imageUrl;
+        $myfile->name = $request->name;
+        $myfile->email = $request->email;
+
+        $myfile->save();
+    }
+
     public function store(Request $request)
     {
-            $myfile = new MyFile;
-            $myfile->file_name = $request->file_name;
-            $myfile->email = $request->email;
-            $myfile->name = $request->name;
-            $myfile->save();
-            return redirect(route('my-file.index'));
+        $imageUrl = $this->imageUpload($request);
+        $this->saveFileInfo($request, $imageUrl);
+
+        return redirect()->route('my-file.index');
     }
 
     /**
@@ -86,14 +108,14 @@ class MyFileController extends Controller
      */
     public function destroy($id)
     {
-        myfile::where('id',$id)->delete();
+        MyFile::where('id',$id)->delete();
         return redirect()->back();
     }
+
     public function pdfgenerate($id)
     {
         $myfile = MyFile::find($id);
         $pdf = PDF::loadView('download',compact('myfile'));
         return $pdf->stream('my_file.pdf');
     }
-
 }
