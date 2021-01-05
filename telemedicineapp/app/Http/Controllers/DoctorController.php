@@ -13,10 +13,11 @@ class DoctorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $doctors = Doctor::all();
-        return view('admin.pages.doctors',['doctors' => $doctors]);
+      return view('admin.pages.doctors', compact('doctors'));
     }
 
     /**
@@ -26,9 +27,8 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        //
-    }
 
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -45,7 +45,7 @@ class DoctorController extends Controller
         $doctor->specialization = $request->specialization;
         $doctor->save();
 
-        return redirect(route('doctors.index'));
+        return redirect()->route('doctors.index');
     }
 
     /**

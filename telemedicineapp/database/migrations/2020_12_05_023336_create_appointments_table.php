@@ -18,7 +18,8 @@ class CreateAppointmentsTable extends Migration
             $table->date('date');
             $table->string('appointment');
             $table->time('time');
-            $table->timestamps();;
+            $table->string('disease');
+            $table->timestamps();
         });
     }
 

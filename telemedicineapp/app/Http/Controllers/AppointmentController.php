@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Appointment;
+use App\Doctor;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -15,7 +16,8 @@ class AppointmentController extends Controller
     public function index()
     {
         $appointments = Appointment::all();
-        return view('admin.pages.appointment', ['appointments' => $appointments]);
+        $doctors = Doctor::all();
+      return view('admin.pages.appointment', compact('appointments','doctors'));
     }
 
     /**
@@ -25,7 +27,7 @@ class AppointmentController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -41,8 +43,10 @@ class AppointmentController extends Controller
         $appointment->date = $request->date;
         $appointment->appointment = $request->appointment;
         $appointment->time = $request->time;
+        $appointment->disease = $request->disease;
         $appointment->save();
-        return redirect(route('appointment.index'));
+
+        return redirect()->route('appointment.index');
     }
 
     /**

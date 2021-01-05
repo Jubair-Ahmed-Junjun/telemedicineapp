@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('title')
-   Doctors|| Dashboard
+    My Files || Dashboard
 @endsection
 
 @section('main-content')

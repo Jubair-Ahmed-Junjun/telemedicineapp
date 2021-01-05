@@ -34,6 +34,7 @@
                 <th>Doctor Name</th>
                 <th>Date</th>
                 <th>Time</th>
+                <th>Description of the disease</th>
                 <th>Cancel</th>
                 <th>Chat</th>
                 <th>Video</th>
@@ -46,10 +47,12 @@
                 <td>{{ $appointment->appointment }}</td>
                 <td>{{ $appointment->date }}</td>
                 <td>{{ $appointment->time }}</td>
+                <td>{{$appointment->disease}}</td>
                 <td>
                   <form id="delete-form-{{$appointment->id}}" action="{{route('appointment.destroy',$appointment->id)}}" method="post" style="display:none;">
                                                 @csrf
                                                 {{method_field('DELETE')}}
+
                                             </form>
                                             <a href="" onclick="if(confirm('Are you sure, You want to delete this?'))
                                             {
@@ -59,8 +62,9 @@
                                                 event.preventDefault();
                                                     }" class="btn btn-danger">
                   <i class="fa fa-times"></i></a></td>
-                <td><a href="{{route('chatify')}}" class="btn btn-success"><i class="fa fa-comments"></i></a></td>
+                <td><a href="{{ route('chatify') }}" class="btn btn-success"><i class="fa fa-comments"></i></a></td>
                 <td><a href="" class="btn btn-danger"><i class="fa fa-video"></i></a></td>
+                <td></td>
               </tr>
               @endforeach
             </tbody>
@@ -79,16 +83,18 @@
   </div>
   <div class="form-group">
     <select name="appointment" class="form-control">
-
-      <option value="Faisal Khan">Faisal Khan</option>
-      <option value="Jubair Ahmed">Jubair Ahmed</option>
-      <option value="Sohailul Alam">Sohailul Alam</option>
-      <option value="Nabil">Nabil</option>
+      @foreach( $doctors as $doctor )
+      <option value="{{$doctor->doctor_name}}({{$doctor->specialization}})">{{ $doctor->doctor_name }} || ({{$doctor->specialization}})</option>
+      @endforeach
 
     </select>
   </div>
     <div class="form-group">
     <input type="time" class="form-control" name="time">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Description of the disease</label>
+    <textarea class="form-control" name="disease" rows="3"></textarea>
   </div>
   <button type="submit" class="btn btn-primary float-sm-right">Save</button>
 </form>
