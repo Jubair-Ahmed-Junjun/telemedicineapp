@@ -1,4 +1,4 @@
-# telemedicineapp
+# Telemedicine App
 ### **This is Software Development project-II** : 
 Supervised by :
 Rokan Uddin Faruqui,
