@@ -1,7 +1,7 @@
 # Telemedicine App
 ### **This is Software Development project-II** : 
 Supervised by :
-Rokan Uddin Faruqui,
+[Rokan Uddin Faruqui](https://www.facebook.com/rufaruqui),
 Associate Professor at University of Chittagong.
 
 Download :
